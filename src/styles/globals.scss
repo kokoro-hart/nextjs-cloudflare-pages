@@ -1,0 +1,17 @@
+@charset "utf-8";
+
+* {
+  box-sizing: border-box;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+
+  &::before,
+  &::after {
+    box-sizing: inherit;
+  }
+
+  &:focus {
+    outline: 2px solid;
+  }
+}
