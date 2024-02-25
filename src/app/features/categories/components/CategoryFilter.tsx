@@ -15,6 +15,9 @@ export const CategoryFilter = ({ categories }: CategoryFilterProps) => {
   const handleClick = (id: string) => {
     router.push(`${getPath.home()}?filters=category[contains]${id}`);
   };
+  const handleClear = () => {
+    router.push(getPath.home());
+  };
   return (
     <div>
       {categories.map(({ id, name }) => (
@@ -22,6 +25,9 @@ export const CategoryFilter = ({ categories }: CategoryFilterProps) => {
           {name}
         </button>
       ))}
+      <button type="button" onClick={handleClear}>
+        クリア
+      </button>
     </div>
   );
 };
