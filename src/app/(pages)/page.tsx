@@ -15,7 +15,7 @@ type Props = {
 
 export default async function Home({ searchParams }: Props) {
   const blogs = await getBlogs({
-    filters: searchParams.filters,
+    filters: searchParams.filters || "",
   });
   const categories = await getCategories();
 
