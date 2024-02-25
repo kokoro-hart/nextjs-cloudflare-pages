@@ -8,6 +8,7 @@ export default async function Home() {
 
   return (
     <main>
+      <Link href={getPath.home()}>戻る</Link>
       <h1 className="text-2xl font-bold my-4">ブログ</h1>
       <ul>
         {blogs.contents.map(({ id, title, category }) => (
