@@ -10,9 +10,6 @@ export const getCategories = async (queries?: MicroCMSQueries) => {
     .getList<Category>({
       endpoint: "categories",
       queries,
-      customRequestInit: {
-        cache: "no-store",
-      },
     })
     .catch(notFound);
 };
