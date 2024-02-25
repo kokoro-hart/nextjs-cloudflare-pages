@@ -15,12 +15,18 @@ type Props = {
 
 export default async function Home({ searchParams }: Props) {
   const blogs = await getBlogs({
-    filters: searchParams.filters || "",
+    queries: {
+      filters: searchParams.filters || "",
+    },
+    customRequestInit: {
+      cache: "no-store",
+    },
   });
   const categories = await getCategories();
 
   return (
     <main>
+      <Link href={getPath.static()}>Static Page</Link>
       <h1 className="text-2xl font-bold my-4">ブログ</h1>
       <CategoryFilter categories={categories.contents} />
       <ul>
