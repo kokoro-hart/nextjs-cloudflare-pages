@@ -10,6 +10,9 @@ export const getBlogs = async (queries?: MicroCMSQueries) => {
     .getList<Blog>({
       endpoint: "blogs",
       queries,
+      customRequestInit: {
+        cache: "no-store",
+      },
     })
     .catch(notFound);
 };
@@ -20,6 +23,9 @@ export const getBlog = async (contentId: string, queries?: MicroCMSQueries) => {
       endpoint: "blogs",
       contentId,
       queries,
+      customRequestInit: {
+        cache: "no-store",
+      },
     })
     .catch(notFound);
 };
