@@ -1,7 +1,4 @@
-export type Category = {
-  id: string;
-  name: string;
-};
+import { Category } from "@/app/features/categories";
 
 export type Blog = {
   id: string;
@@ -12,7 +9,7 @@ export type Blog = {
     height: number;
     width: number;
   };
-  category: Category;
+  category: Category[];
   createdAt: string;
   updatedAt: string;
   publishedAt: string;
