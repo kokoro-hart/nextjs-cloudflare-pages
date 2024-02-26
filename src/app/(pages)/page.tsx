@@ -1,3 +1,5 @@
+export const runtime = "edge";
+
 import { Suspense } from "react";
 
 import { Link, Loading } from "@/app/components/elements";
@@ -7,15 +9,20 @@ import { getPath } from "@/app/utils";
 
 import styles from "./page.module.scss";
 
-export default async function Home() {
-  const categories = await getCategories();
+type Props = {
+  searchParams: {
+    filters?: string;
+  };
+};
 
+export default async function Home({ searchParams }: Props) {
+  const categories = await getCategories();
   return (
     <div className={styles.wrapper}>
       <Link href={getPath.static()}>Static Page</Link>
       <CategoryFilter categories={categories.contents} />
       <Suspense fallback={<Loading />}>
-        <Blogs />
+        <Blogs searchParams={searchParams} />
       </Suspense>
     </div>
   );

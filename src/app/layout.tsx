@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 
 import "@/styles/style.scss";
-import { AppProvider } from "@/app/providers";
 
 import styles from "./layout.module.scss";
 
@@ -21,9 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <AppProvider>
-          <main className={styles.main}>{children}</main>
-        </AppProvider>
+        <main className={styles.main}>{children}</main>
       </body>
     </html>
   );
