@@ -1,29 +1,27 @@
+"use client";
+
+import { useSearchParams } from "next/navigation";
+import React from "react";
+
 import { Link } from "@/app/components/elements";
 import { getPath } from "@/app/utils";
 
-import { getBlogs } from "..";
+import { useGetBlogs } from "..";
 
-import styles from "./Blogs.module.scss";
+export const Blogs = () => {
+  const searchParams = useSearchParams();
+  const filters = searchParams.get("filters");
 
-type BlogsProps = {
-  searchParams: {
-    filters?: string;
-  };
-};
-export const Blogs = async ({ searchParams }: BlogsProps) => {
-  const { contents } = await getBlogs({
-    queries: {
-      filters: searchParams.filters || "",
-    },
-    customRequestInit: {
-      cache: "no-store",
-    },
+  const {
+    data: { contents },
+  } = useGetBlogs({
+    params: filters || "",
   });
 
   return (
-    <ul className={styles.list}>
+    <ul>
       {contents.map(({ id, title, category }) => (
-        <li key={id} className={styles.item}>
+        <li key={id}>
           <Link href={getPath.blog(id)}>{title}</Link>
           {category[0]?.name}
         </li>
