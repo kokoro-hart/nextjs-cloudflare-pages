@@ -3,13 +3,14 @@ import Link from "next/link";
 import { getBlogs } from "@/app/features/blogs";
 import { getPath } from "@/app/utils";
 
+import styles from "../page.module.scss";
+
 export default async function Home() {
   const blogs = await getBlogs();
 
   return (
-    <main>
+    <div className={styles.wrapper}>
       <Link href={getPath.home()}>戻る</Link>
-      <h1 className="text-2xl font-bold my-4">ブログ</h1>
       <ul>
         {blogs.contents.map(({ id, title, category }) => (
           <li key={id}>
@@ -18,6 +19,6 @@ export default async function Home() {
           </li>
         ))}
       </ul>
-    </main>
+    </div>
   );
 }

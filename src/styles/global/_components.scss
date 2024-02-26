@@ -1,0 +1,25 @@
+@use "sass:math";
+@use "mixin" as *;
+@use "breakpoint" as *;
+@use "variables" as *;
+@use "font" as *;
+
+@mixin page_heading() {
+  @include fz(32);
+  @include line_height(48, 32);
+  @include font_weight_semiBold;
+  @include font_sans;
+
+  font-feature-settings: "palt" on;
+  letter-spacing: 0.03em;
+}
+
+@mixin page_desc {
+  @include fz(11);
+  @include line_height(19.8, 11);
+  @include font_weight_light;
+  @include font_sans;
+
+  font-feature-settings: "palt" on;
+  letter-spacing: 0.03em;
+}

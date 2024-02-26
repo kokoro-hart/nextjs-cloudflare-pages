@@ -1,0 +1,135 @@
+@charset "utf-8";
+
+@use "breakpoint";
+@use "mixin";
+@use "variables";
+
+// hover
+@mixin hover {
+  @media (any-hover: hover) {
+    &:hover {
+      @content;
+    }
+  }
+}
+
+// hover opacity
+@mixin hover_opacity($opacity: 0.7, $duration: 0.3s) {
+  @include hover {
+    opacity: $opacity;
+    transition: opacity $duration variables.$ease_out_quint;
+  }
+}
+
+@mixin hover_buttonHasBorder($opacity: 0.7, $duration: 0.3s) {
+  position: relative;
+  @include breakpoint.md {
+    transition: color $duration variables.$ease_out_quint;
+
+    .rightIcon,
+    .leftIcon {
+      transition: color $duration variables.$ease_out_quint;
+    }
+
+    &::after {
+      position: absolute;
+      top: -1px;
+      left: -1px;
+      width: calc(100% + 2px);
+      height: calc(100% + 2px);
+      pointer-events: none;
+      content: "";
+      border: 2px solid transparent;
+      border-radius: 4px;
+      transition: border-color $duration variables.$ease_out_quint;
+    }
+  }
+  @include hover {
+    color: variables.$color_darkmint;
+    border: 1px solid variables.$color_lightmint;
+
+    .rightIcon,
+    .leftIcon {
+      stroke: variables.$color_darkmint;
+    }
+
+    &::after {
+      border: 2px solid variables.$color_lightmint;
+    }
+  }
+}
+
+@mixin hover_buttonPrimary($opacity: 0.7, $duration: 0.3s) {
+  @include breakpoint.md {
+    transition: background-color $duration variables.$ease_out_quint,
+      color $duration variables.$ease_out_quint, border-color $duration variables.$ease_out_quint;
+  }
+  @include hover {
+    color: variables.$color_darkmint;
+    background-color: variables.$color_lightmint;
+    border-color: variables.$color_lightmint;
+  }
+}
+
+//hover 画像拡大
+@mixin hover_zoom($scale: 1.05, $duration: 0.3s) {
+  @include breakpoint.md {
+    // Safariバグ対応
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+
+    img {
+      transition: transform $duration variables.$ease_out_quint;
+    }
+  }
+  @include hover {
+    img {
+      transform: scale($scale);
+    }
+  }
+}
+
+@mixin hover_borderColor($duration: 0.3s) {
+  @include breakpoint.md {
+    transition: border-color $duration variables.$ease_out_quint,
+      color $duration variables.$ease_out_quint;
+  }
+  @include hover {
+    & * {
+      color: variables.$color_darkmint !important;
+    }
+
+    border-color: #37d8b7;
+  }
+}
+
+@mixin hover_borderBottomColor($duration: 0.1s) {
+  position: relative;
+  display: block;
+
+  &::after {
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    width: calc(100% + 2px);
+    height: calc(100% + 2px);
+    pointer-events: none;
+    content: "";
+    background-color: transparent;
+    border-bottom: 2px solid transparent;
+    transition: border-color $duration variables.$ease_out_quint;
+  }
+  @include breakpoint.md {
+    transition: border-color $duration variables.$ease_out_quint,
+      color $duration variables.$ease_out_quint;
+  }
+  @include hover {
+    color: variables.$color_darkmint;
+    border-color: variables.$color_lightmint;
+
+    &::after {
+      border-bottom: 2px solid variables.$color_lightmint;
+    }
+  }
+}

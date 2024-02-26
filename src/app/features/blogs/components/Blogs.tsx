@@ -8,6 +8,8 @@ import { getPath } from "@/app/utils";
 
 import { useGetBlogs } from "..";
 
+import styles from "./Blogs.module.scss";
+
 export const Blogs = () => {
   const searchParams = useSearchParams();
   const filters = searchParams.get("filters");
@@ -19,9 +21,9 @@ export const Blogs = () => {
   });
 
   return (
-    <ul>
+    <ul className={styles.list}>
       {contents.map(({ id, title, category }) => (
-        <li key={id}>
+        <li key={id} className={styles.item}>
           <Link href={getPath.blog(id)}>{title}</Link>
           {category[0]?.name}
         </li>
