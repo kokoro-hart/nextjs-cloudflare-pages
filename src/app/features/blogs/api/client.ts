@@ -3,7 +3,9 @@ import { useSuspenseQuery } from "@tanstack/react-query";
 import { GetBlogsResponse, GetClientSideRequestParams } from "..";
 
 const getBlogs = async ({ params }: GetClientSideRequestParams): Promise<GetBlogsResponse> => {
-  const res = await fetch(`/api/blogs/?filters=${params}`);
+  const res = await fetch(
+    `https://feature-route-handler.nextjs-cloudflare-pages-63c.pages.dev/api/blogs/?filters=${params}`,
+  );
   return res.json();
 };
 
