@@ -1,0 +1,11 @@
+@charset "utf-8";
+@use "@/styles/global" as *;
+
+.main {
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  padding-top: 100px;
+  padding-bottom: 100px;
+}

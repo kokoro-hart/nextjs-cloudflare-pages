@@ -1,0 +1,62 @@
+@charset "utf-8";
+@use "@/styles/global" as *;
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 7px 14px;
+  font-feature-settings: "palt";
+  color: white;
+  text-align: center;
+  letter-spacing: 0.03em;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 4px;
+  @include line_height(21, 14);
+  @include fz(14);
+  @include font_weight_semiBold;
+  @include line_height(21, 14);
+  cursor: pointer;
+
+
+  .button__text {
+    display: block;
+    flex: 1;
+    word-wrap: break-word;
+  }
+
+  // 色バリエーション
+  &._primary {
+    background-color: $color_primary;
+    border-color: $color_primary;
+    @include hover_buttonPrimary;
+  }
+
+  &._gray {
+    background-color: $color_gray;
+    border-color: $color_gray;
+  }
+
+  &._hasBorder {
+    color: $color_primary;
+    background-color: $color_white;
+    @include hover_buttonHasBorder;
+  }
+
+  &._hasIcon {
+    column-gap: 8px;
+  }
+  // 大きさバリエーション
+  &._winthFull {
+    width: 100%;
+    padding: 12px 14px 11px;
+  }
+
+  .rightIcon,
+  .leftIcon {
+    display: block;
+    cursor: pointer;
+    stroke: #666674;
+  }
+}

@@ -3,11 +3,11 @@ import { notFound } from "next/navigation";
 
 import { client } from "@/app/libs";
 
-import { Category } from "../types";
+import { GetCategoriesResponse } from "../types";
 
 export const getCategories = async (queries?: MicroCMSQueries) => {
   return await client
-    .getList<Category>({
+    .getList<GetCategoriesResponse["contents"][number]>({
       endpoint: "categories",
       queries,
     })

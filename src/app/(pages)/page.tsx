@@ -1,11 +1,13 @@
 export const runtime = "edge";
 
-import Link from "next/link";
+import { Suspense } from "react";
 
-import { getBlogs } from "@/app/features/blogs";
+import { Link, Loading } from "@/app/components/elements";
+import { Blogs } from "@/app/features/blogs";
 import { CategoryFilter, getCategories } from "@/app/features/categories";
+import { getPath } from "@/app/utils";
 
-import { getPath } from "../utils";
+import styles from "./page.module.scss";
 
 type Props = {
   searchParams: {
@@ -14,29 +16,14 @@ type Props = {
 };
 
 export default async function Home({ searchParams }: Props) {
-  const blogs = await getBlogs({
-    queries: {
-      filters: searchParams.filters || "",
-    },
-    customRequestInit: {
-      cache: "no-store",
-    },
-  });
   const categories = await getCategories();
-
   return (
-    <main>
+    <div className={styles.wrapper}>
       <Link href={getPath.static()}>Static Page</Link>
-      <h1 className="text-2xl font-bold my-4">ブログ</h1>
       <CategoryFilter categories={categories.contents} />
-      <ul>
-        {blogs.contents.map(({ id, title, category }) => (
-          <li key={id}>
-            <Link href={getPath.blog(id)}>{title}</Link>
-            {category[0]?.name}
-          </li>
-        ))}
-      </ul>
-    </main>
+      <Suspense fallback={<Loading />}>
+        <Blogs searchParams={searchParams} />
+      </Suspense>
+    </div>
   );
 }

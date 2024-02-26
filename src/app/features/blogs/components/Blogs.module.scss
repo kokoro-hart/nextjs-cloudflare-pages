@@ -1,0 +1,15 @@
+@charset "utf-8";
+@use "@/styles/global" as *;
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.item {
+  display: flex;
+  gap: 20px;
+  padding: 10px;
+  background-color: $color_border;
+}
