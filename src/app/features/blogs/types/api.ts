@@ -14,3 +14,5 @@ export type GetBlogRequestParams = {
   queries?: MicroCMSQueries;
   customRequestInit?: CustomRequestInit;
 };
+
+export type GetClientSideRequestParams = { params: string };

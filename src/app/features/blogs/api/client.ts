@@ -1,14 +1,13 @@
 import { useSuspenseQuery } from "@tanstack/react-query";
 
-import { GetBlogsResponse } from "..";
+import { GetBlogsResponse, GetClientSideRequestParams } from "..";
 
-type Test = { params: string };
-const getBlogs = async ({ params }: Test): Promise<GetBlogsResponse> => {
+const getBlogs = async ({ params }: GetClientSideRequestParams): Promise<GetBlogsResponse> => {
   const res = await fetch(`/api/blogs/?filters=${params}`);
   return res.json();
 };
 
-export const useGetBlogs = (params: Test) => {
+export const useGetBlogs = (params: GetClientSideRequestParams) => {
   return useSuspenseQuery({
     queryKey: ["blogs", params],
     queryFn: () => getBlogs(params),

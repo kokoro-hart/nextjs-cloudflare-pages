@@ -11,6 +11,7 @@ export async function GET(request: NextRequest) {
       "Content-Type": "application/json",
       "X-MICROCMS-API-KEY": process.env.NEXT_PUBLIC_MICROCMS_API_KEY!,
     },
+    cache: "no-store",
   });
 
   const data = await res.json();
