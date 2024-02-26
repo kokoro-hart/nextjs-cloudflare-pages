@@ -1,5 +1,7 @@
 import { Category } from "@/app/features/categories";
 
+export * from "./api";
+
 export type Blog = {
   id: string;
   title: string;

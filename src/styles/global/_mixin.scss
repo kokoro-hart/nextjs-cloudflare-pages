@@ -1,0 +1,92 @@
+@charset "utf-8";
+
+@use "sass:math";
+@use "breakpoint";
+@use "variables";
+
+// コンテンツ幅
+// $width: wide || narrow
+@mixin content_width($width) {
+  width: 100%;
+  padding-right: variables.$content_paddingS;
+  padding-left: variables.$content_paddingS;
+  margin-right: auto;
+  margin-left: auto;
+  @include breakpoint.md {
+    padding-right: variables.$content_paddingM;
+    padding-left: variables.$content_paddingM;
+  }
+  @include breakpoint.lg {
+    padding-right: variables.$content_paddingL;
+    padding-left: variables.$content_paddingL;
+  }
+  @if $width == wide {
+    max-width: calc(#{variables.$content_width} + #{variables.$content_paddingL} * 2);
+  } @else if $width == narrow {
+    max-width: calc(#{variables.$content_width_narrow} + #{variables.$content_paddingL} * 2);
+  }
+}
+
+// visually-hidden:
+// 視覚的にコンテンツを非表示にしたい場合や、スクリーンリーダーや
+// 検索エンジンからアクセスできるようにしたい場合に使う
+@mixin visually_hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(1px 1px 1px 1px);
+  border: 0;
+}
+
+// 行数制御
+// $line: 行数
+@mixin line-clamp($count: 2) {
+  @if type-of($count) != "number" {
+    @error '引数は数値で指定してください';
+  }
+
+  @if $count == 1 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  } @else {
+    display: -webkit-box;
+    -webkit-line-clamp: $count;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+// ブラウザハック
+
+// Mozilla Firefox
+@mixin only_firefox {
+  @supports (-moz-appearance: meterbar) {
+    @content;
+  }
+}
+
+// Safari
+@mixin only_safari {
+  @supports (paint-order: fill) and (-webkit-marquee-speed: 0) {
+    @content;
+  }
+}
+
+// iOS Safari
+@mixin only_iOS {
+  @supports (-webkit-text-size-adjust: none) and (not (-ms-accelerator: true)) and
+    (not (-moz-appearance: none)) {
+    @content;
+  }
+}
+
+// Microsoft Edge
+@mixin only_edge {
+  @supports (-ms-ime-align: auto) {
+    @content;
+  }
+}

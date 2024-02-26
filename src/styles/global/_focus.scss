@@ -1,0 +1,12 @@
+@charset "utf-8";
+@use "variables";
+@use "breakpoint";
+
+@mixin focus-visible {
+  @include breakpoint.md {
+    &:focus-visible {
+      outline: 3px solid variables.$color_darkmint;
+      outline-offset: 5px;
+    }
+  }
+}

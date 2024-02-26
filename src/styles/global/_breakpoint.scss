@@ -1,0 +1,59 @@
+@charset "utf-8";
+
+@use "variables";
+
+//@include under_sm{}
+@mixin under_sm {
+  @media not all and (min-width: variables.$sm) {
+    @content;
+  }
+}
+//@include sm{}
+@mixin sm {
+  @media (min-width: variables.$sm) {
+    @content;
+  }
+}
+//@include under_md{}
+@mixin under_md {
+  @media not all and (min-width: variables.$md) {
+    @content;
+  }
+}
+//@include md{}
+@mixin md {
+  @media (min-width: variables.$md) {
+    @content;
+  }
+}
+//@include under_lg{}
+@mixin under_lg {
+  @media not all and (min-width: variables.$lg) {
+    @content;
+  }
+}
+//@include lg{}
+@mixin lg {
+  @media (min-width: variables.$lg) {
+    @content;
+  }
+}
+//@include xl{}
+@mixin xl {
+  @media (min-width: variables.$xl) {
+    @content;
+  }
+}
+//@include ordinal_width{}
+@mixin ordinal_width($ordinalWidth) {
+  @media (min-width: $ordinalWidth + px) {
+    @content;
+  }
+}
+
+//@include under_ordinal_width{}
+@mixin under_ordinal_width($underOrdinalWidth) {
+  @media not all and (min-width: $underOrdinalWidth + px) {
+    @content;
+  }
+}
