@@ -13,7 +13,6 @@
   }
 }
 
-// hover opacity
 @mixin hover_opacity($opacity: 0.7, $duration: 0.3s) {
   @include hover {
     opacity: $opacity;
@@ -71,7 +70,6 @@
   }
 }
 
-//hover 画像拡大
 @mixin hover_zoom($scale: 1.05, $duration: 0.3s) {
   @include breakpoint.md {
     // Safariバグ対応

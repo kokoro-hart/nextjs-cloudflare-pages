@@ -1,12 +1,10 @@
 @charset "utf-8";
 @use "sass:math";
 
-// font-family
 @mixin font_sans {
   font-family: "Hiragino Kaku Gothic ProN", Arial, Meiryo, sans-serif;
 }
 
-// Webフォント
 @mixin font_serif {
   font-family: "Open Sans", "Noto Sans JP", sans-serif;
   @include font_weight_regular;
@@ -15,18 +13,14 @@
 @mixin font_en {
   font-family: Poppins, sans-serif;
 }
-// 絵文字フォント
 @mixin font_emoji {
   font-family: "Noto Color Emoji", sans-serif;
 }
-// font-size
-// $fz: 文字サイズ、$base: ベース文字サイズ
 @mixin fz($size, $base: 16) {
   font-size: $size + px;
   font-size: math.div($size, $base) + rem;
 }
 
-// font-weight
 @mixin font_weight_light {
   font-weight: 300;
 }
@@ -43,20 +37,14 @@
   font-weight: 700;
 }
 
-// line-height
-// $line: 行間、$fz: 文字サイズ
 @mixin line_height($line, $fz) {
   line-height: math.div($line, $fz);
 }
 
-// font-size可変 SP
-// $fz: SP文字サイズ、$times: 最大文字サイズ倍率、$deviceWidth: SPデザイン横幅
 @mixin fzVariableSP($fz, $times: 1.5, $deviceWidth: 375) {
   font-size: min(calc(#{$fz}px * #{$times}), calc(#{$fz} / #{$deviceWidth}) * 100vw);
 }
 
-// font-size可変 PC
-// $fz: PC文字サイズ、$times: 最大文字サイズ倍率、$deviceWidth: PCデザイン横幅
 @mixin fzVariablePC($fz, $times: 1.4, $deviceWidth: 1280) {
   font-size: min(#{$fz}px, calc(#{$fz} / #{$deviceWidth}) * 100vw * #{$times});
 }
