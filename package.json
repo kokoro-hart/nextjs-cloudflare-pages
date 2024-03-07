@@ -15,7 +15,6 @@
     "validate": "lint-staged --no-stash"
   },
   "dependencies": {
-    "@tanstack/react-query": "^5.24.1",
     "microcms-js-sdk": "^2.7.0",
     "next": "14.1.0",
     "react": "^18",
